@@ -1,10 +1,10 @@
 const express = require('express');
-const db = require('./db');
+const db = require('./utility/db');
 const cors = require('cors');
 const app = express();
-const { signup, signin, protect } = require('./auth');
+const { signup, signin, protect } = require('./utility/auth');
 const userRoute = require('./resources/user/user.router')
-
+const { taskRouter } = require('./resources/task/task.route');
 app.get('/', (req, res) => {
     res.json({ hello: "from server changed" })
 })
@@ -17,7 +17,8 @@ app.post('/signup', signup);
 app.post('/signin', signin)
 
 app.use('/api', protect);
-app.use('/api/user', userRoute)
+app.use('/api/user', userRoute);
+app.use('/api/task', taskRouter)
 
 app.listen('3000', async () => {
     await db.connect();

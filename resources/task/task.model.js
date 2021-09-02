@@ -41,4 +41,4 @@ const taskSchema = new mongoose.Schema(
 )
 taskSchema.index({ taskName: 1, dueDate: 1 }, { unique: true });
 
-module.exports = { Task: mongoose.model('task', taskSchema)) }
+module.exports = { Task: mongoose.model('task', taskSchema) }

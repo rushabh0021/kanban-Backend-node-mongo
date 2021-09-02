@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const dburl = require('./config/config');
+const dburl = require('../config/config');
 
 module.exports = {
     connect: (url = dburl.url, opts = {}) => {
