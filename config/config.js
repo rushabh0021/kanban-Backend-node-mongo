@@ -3,5 +3,5 @@ module.exports = {
         jwt: "learningNode",
         jwtExp: '100d'
     },
-    url: "mongodb://localhost:27017/test"
+    url: "mongodb+srv://database-user:ISe54HlKIcSequPM@cluster0.dryva.mongodb.net/merng?retryWrites=true&w=majority"
 }

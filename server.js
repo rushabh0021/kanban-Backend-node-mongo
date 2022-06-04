@@ -23,7 +23,7 @@ app.use('/api/user', userRoute);
 app.use('/api/board', boardRoutes);
 app.use('/api/task', taskRouter);
 
-app.listen('3000', async () => {
+app.listen(process.env.PORT || 3000, async () => {
     await db.connect();
     console.log("connection made");
     console.log('server is running on port 3000');
