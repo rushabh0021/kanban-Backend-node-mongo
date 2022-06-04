@@ -1,19 +1,18 @@
 const Router = require('express');
-// const { removeOne, updateOne, getMany, getOne, createOne } = require('./task.controller');
-const { getOne, createOne } = require('./task.controller');
+const taskRoutes = require('./task.controller');
 
 const router = Router();
 
 // /api/task
 router
     .route('/')
-    .get(getOne)
-    .post(createOne)
+    .get(taskRoutes.getMany)
+    .post(taskRoutes.createOne)
 
-/* router
+router
     .route('/:id')
-    .get(getOne)
-    .put(updateOne)
-    .delete(removeOne) */
+    .get(taskRoutes.getOne)
+    .put(taskRoutes.updateOne)
+    .delete(taskRoutes.removeOne)
 
 module.exports = { taskRouter: router };

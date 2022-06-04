@@ -6,28 +6,30 @@ const taskSchema = new mongoose.Schema(
         taskName: {
             type: String,
             required: true,
-            unique: true,
             trim: true
         },
         description: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
             maxlength: 100
         },
         priority: {
             type: String,
             required: true,
-            unique: true,
             trim: true,
             enum: ["low", "medium", "high"]
         },
         dueDate: Date,
+        status: {
+            type: String,
+            required: true,
+            trim: true,
+            enum: ["taskpool", "inprogress", "done"],
+        },
         createdBy: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'user',
-            required: true
         },
         board: {
             type: mongoose.SchemaTypes.ObjectId,

@@ -96,5 +96,8 @@ const removeOne = model => async (req, res) => {
 
 module.exports = {
     getOne,
-    createOne
+    createOne,
+    getMany,
+    updateOne,
+    removeOne
 };

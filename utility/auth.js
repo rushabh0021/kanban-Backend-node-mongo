@@ -29,7 +29,7 @@ const signUp = async (req, res) => {
         if (!alreadyExists) {
             const user = await User.create(req.body);
             const token = newToken(user);
-            return res.status(201).send({ token });
+            return res.status(201).send({ action: "created", message: "Sign Up successfull, login with your credentials" });
         } else {
             return res.status(201).send({ message: "email already registerd", payload: alreadyExists });
         }
@@ -72,25 +72,25 @@ const signIn = async (req, res) => {
 const secure = async (req, res, next) => {
     const bearer = req.headers.authorization;
 
-    if(!bearer || !bearer.startsWith('Bearer')){
+    if (!bearer || !bearer.startsWith('Bearer')) {
         return res.status(401).end()
     }
 
     const token = bearer.split('Bearer ')[1].trim();
 
     var payload;
-    try{
+    try {
         payload = await verifyToken(token);
-    }catch(e){
+    } catch (e) {
         return res.status(401).end();
     }
 
     const user = await User.findById(payload.id)
-    .select('-password')
-    .lean()
-    .exec();
+        .select('-password')
+        .lean()
+        .exec();
 
-    if(!user){
+    if (!user) {
         return res.status(401).end();
     }
 

@@ -5,6 +5,8 @@ const app = express();
 const { signup, signin, protect } = require('./utility/auth');
 const userRoute = require('./resources/user/user.router')
 const { taskRouter } = require('./resources/task/task.route');
+const { boardRoutes } = require('./resources/board/board.route');
+
 app.get('/', (req, res) => {
     res.json({ hello: "from server changed" })
 })
@@ -18,7 +20,8 @@ app.post('/signin', signin)
 
 app.use('/api', protect);
 app.use('/api/user', userRoute);
-app.use('/api/task', taskRouter)
+app.use('/api/board', boardRoutes);
+app.use('/api/task', taskRouter);
 
 app.listen('3000', async () => {
     await db.connect();
